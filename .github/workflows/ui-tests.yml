@@ -28,6 +28,10 @@ jobs:
       - name: Run tests (remote + headless)
         run: mvn -q test -Dselenide.remote=http://localhost:4444/wd/hub -Dselenide.headless=true
 
+      - name: Generate Allure report
+        if: always()
+        run: mvn -q allure:report
+
       - name: Upload artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -35,4 +39,6 @@ jobs:
           name: test-artifacts
           path: |
             target/surefire-reports/
+            target/allure-results/
+            target/site/allure-maven-plugin/
             target/
