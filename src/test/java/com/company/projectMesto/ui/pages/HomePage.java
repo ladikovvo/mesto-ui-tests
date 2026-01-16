@@ -3,6 +3,7 @@ package com.company.projectMesto.ui.pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.company.projectMesto.ui.components.PostCardComponent;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
@@ -55,11 +56,13 @@ public class HomePage {
         return this;
     }
 
+    @Step("Logout")
     public LoginPage clickLogout(){
         logoutButton.shouldBe(interactable).click();
         return new LoginPage();
     }
 
+    @Step("Get post card by title: {title}")
     public PostCardComponent cardByTitle(String title){
         return new PostCardComponent(findPostByTitle(title));
     }
@@ -67,12 +70,15 @@ public class HomePage {
 
 
     // REGISTRATION METHODS --------------------------------------------
+
+    @Step("Expect registration message : {message} ")
     public HomePage shouldShowRegistrationMessage(String message){
         registrationPopup.shouldBe(visible);
         registrationStatusMessage.shouldHave(text(message));
         return this;
     }
 
+    @Step("Close registration status popup")
     public HomePage closeRegistrationStatusMessage(){
         closeRegistrationPopup.shouldBe(interactable).click();
         registrationPopup.shouldNot(exist);

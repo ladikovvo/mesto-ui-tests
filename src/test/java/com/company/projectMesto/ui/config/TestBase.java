@@ -14,9 +14,9 @@ public class TestBase {
         Configuration.baseUrl = "https://qa-mesto.praktikum-services.ru";
         Configuration.browserSize = "1920x1080";
         Configuration.timeout = 8000;          // ожидания shouldBe/shouldHave
-        Configuration.headless = false;        // true для CI
         Configuration.screenshots = true;
         Configuration.savePageSource = true;
+        SelenideLogger.removeListener("AllureSelenide");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
                 .screenshots(true)
                 .savePageSource(true)

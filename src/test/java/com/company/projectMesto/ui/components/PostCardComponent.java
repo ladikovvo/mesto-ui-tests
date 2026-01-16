@@ -4,6 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.conditions.CssClass;
 import com.company.projectMesto.ui.pages.HomePage;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
 
@@ -35,6 +36,8 @@ public class PostCardComponent {
                 .trim();
     }
 
+
+    @Step("Read likes counter")
     public int likesCount(){
         String text = likesCount
                 .shouldBe(visible)
@@ -45,11 +48,14 @@ public class PostCardComponent {
     }
 
 
+
+    @Step("Wait likes counter changed from {old}")
     public PostCardComponent waitLikesChangedFrom(int old) {
         likesCount.shouldNotHave(exactText(String.valueOf(old)));
         return this;
     }
 
+    @Step("Ensure post is not liked")
     public PostCardComponent ensureNotLiked(){
         if(likeButton.shouldBe(visible).has(cssClass(likeButtonTrue))){
             unlikePost();
@@ -57,6 +63,7 @@ public class PostCardComponent {
         return this;
     }
 
+    @Step("Ensure post is liked")
     public PostCardComponent ensureLiked(){
         if(!likeButton.shouldBe(visible).has(cssClass(likeButtonTrue))){
             likePost();
@@ -66,6 +73,7 @@ public class PostCardComponent {
 
 
 
+    @Step("Like post")
     public PostCardComponent likePost(){
         likeButton
                 .shouldBe(interactable)
@@ -77,6 +85,7 @@ public class PostCardComponent {
 
     }
 
+    @Step("Unlike post")
     public PostCardComponent unlikePost() {
 
 

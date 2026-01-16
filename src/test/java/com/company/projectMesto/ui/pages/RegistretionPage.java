@@ -1,6 +1,7 @@
 package com.company.projectMesto.ui.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
@@ -21,6 +22,7 @@ public class RegistretionPage {
         return this;
     }
 
+    @Step("Register new user")
     public HomePage registerNewUser(String email, String password){
         emailInput.shouldBe(interactable).setValue(email);
         passwordInput.shouldBe(interactable).setValue(password);

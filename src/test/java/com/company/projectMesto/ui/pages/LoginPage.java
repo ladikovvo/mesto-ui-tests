@@ -1,5 +1,6 @@
 package com.company.projectMesto.ui.pages;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -20,6 +21,7 @@ public class LoginPage {
 
     private final SelenideElement footerText = $(".footer__copyright");
 
+    @Step("Open Login page")
     public LoginPage openPage(){
         open("/signin");
         signInButton.shouldBe(visible);
@@ -36,18 +38,21 @@ public class LoginPage {
         return this;
     }
 
+    @Step("Fill credentials: {email} / ***")
     public LoginPage fillCredential(String email, String password){
         emailInput.shouldBe(visible).setValue(email);
         passwordInput.shouldBe(visible).setValue(password);
         return this;
     }
 
+    @Step("Login with email: {email}")
     public HomePage login(String email, String password) {
         fillCredential(email, password);
         clickSignIn();
         return new HomePage();
     }
 
+    @Step("Close Error popup")
     public LoginPage closeErrorPopup(){
         errorPopup.shouldBe(visible);
         closeErrorButton.shouldBe(enabled).click();
@@ -56,6 +61,7 @@ public class LoginPage {
     }
 
 
+    @Step("Expect error popup: {line1} {line2}")
     public LoginPage shouldShowError(String line1, String line2) {
         errorPopup.shouldBe(visible);
         errorText.shouldHave(text(line1))
@@ -63,6 +69,7 @@ public class LoginPage {
         return this;
     }
 
+    @Step("Open registration page")
     public RegistretionPage clickRegistration(){
         registButton.shouldBe(interactable).click();
         return new RegistretionPage().shouldBeOpened();
