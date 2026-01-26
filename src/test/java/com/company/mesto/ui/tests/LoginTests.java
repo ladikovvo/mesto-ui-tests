@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Tag;
 
 import java.util.stream.Stream;
 
+@Tag("ui")
 @Tag("auth")
 public class LoginTests extends TestBase {
 
@@ -32,7 +33,7 @@ public class LoginTests extends TestBase {
         @Tag("smoke")
         @Test
         @Timeout(20)
-        @DisplayName("User can login with valid credentials")
+        @DisplayName("UserData can login with valid credentials")
         void shouldLoginWithValidCredentials() {
             loginPage
                     .login(TestData.EMAIL, TestData.PASSWORD)

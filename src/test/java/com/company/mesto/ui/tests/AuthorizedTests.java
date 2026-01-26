@@ -10,6 +10,7 @@ import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("ui")
 @Tag("authorized")
 public class AuthorizedTests extends TestBase {
 

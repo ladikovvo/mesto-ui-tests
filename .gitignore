@@ -11,6 +11,7 @@ allure-report/
 *.iml
 *.ipr
 *.iws
+out/
 
 # Build outputs (если у тебя реально есть папка build)
 build/
@@ -20,7 +21,13 @@ build/
 
 # OS
 .DS_Store
+Thumbs.db
 
 ### Mac OS ###
 .DS_Store
 /.idea/
+
+# Logs
+*.log
+
+ajcore*.txt
