@@ -1,18 +1,17 @@
 package com.company.mesto.ui.tests;
 
+import com.company.mesto.testdata.CommonTestData;
 import com.company.mesto.ui.components.PostCardComponent;
-import com.company.mesto.ui.config.TestBase;
-import com.company.mesto.ui.data.TestData;
+import com.company.mesto.ui.config.UiConfig;
 import com.company.mesto.ui.pages.HomePage;
 import com.company.mesto.ui.pages.LoginPage;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("ui")
 @Tag("authorized")
-public class AuthorizedTests extends TestBase {
+public class AuthorizedTests extends UiConfig {
 
     private HomePage home;
 
@@ -20,7 +19,7 @@ public class AuthorizedTests extends TestBase {
     void login(){
         home = new LoginPage()
                 .openPage()
-                .login(TestData.EMAIL, TestData.PASSWORD)
+                .login(CommonTestData.EMAIL, CommonTestData.PASSWORD)
                 .shouldBeOpened();
     }
 
@@ -36,7 +35,7 @@ public class AuthorizedTests extends TestBase {
     @Test
     @DisplayName("Heder should contain user email: {expectedEmail} ")
     void headerShouldContainUserEmail(){
-        String expectedEmail = TestData.EMAIL;
+        String expectedEmail = CommonTestData.EMAIL;
         String headerEmail = home.getHeaderUserEmail();
         assertEquals(expectedEmail , headerEmail, "Header user email is not correct");
     }
@@ -50,7 +49,7 @@ public class AuthorizedTests extends TestBase {
         @DisplayName("Edit profile name")
         void editProfileName(){
 
-            String newName = TestData.randomString();
+            String newName = CommonTestData.randomString();
             String oldName = home.getProfileName();
 
             home.openEditProfilePopup()
@@ -65,7 +64,7 @@ public class AuthorizedTests extends TestBase {
         @Test
         @DisplayName("Edit profile activity")
         void editProfileActivity(){
-            String newActivity = TestData.randomString();
+            String newActivity = CommonTestData.randomString();
             String oldActivity = home.getProfileActivity();
 
             home.openEditProfilePopup()

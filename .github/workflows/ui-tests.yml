@@ -1,11 +1,40 @@
 name: ui-tests
 
 on:
+
   push:
   pull_request:
 
 jobs:
-  test:
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '24'
+          cache: maven
+
+      - name: Run API tests
+        run: mvn -q clean test -DincludeTags=api
+
+      - name: Generate Allure report
+        if: always()
+        run: mvn -q allure:report
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-artifacts
+          path: |
+            target/surefire-reports/
+            target/allure-results/
+            target/site/allure-maven-plugin/
+  ui:
     runs-on: ubuntu-latest
 
     services:

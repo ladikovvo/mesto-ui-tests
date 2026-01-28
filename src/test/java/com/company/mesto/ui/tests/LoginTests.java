@@ -1,7 +1,8 @@
 package com.company.mesto.ui.tests;
 
-import com.company.mesto.ui.config.TestBase;
-import com.company.mesto.ui.data.TestData;
+import com.company.mesto.testdata.CommonTestData;
+import com.company.mesto.ui.config.UiConfig;
+import com.company.mesto.ui.data.UiTestData;
 import com.company.mesto.ui.pages.LoginPage;
 import com.company.mesto.ui.utils.Html5Validation;
 import org.junit.jupiter.api.*;
@@ -14,7 +15,7 @@ import java.util.stream.Stream;
 
 @Tag("ui")
 @Tag("auth")
-public class LoginTests extends TestBase {
+public class LoginTests extends UiConfig {
 
     LoginPage loginPage;
 
@@ -36,7 +37,7 @@ public class LoginTests extends TestBase {
         @DisplayName("UserData can login with valid credentials")
         void shouldLoginWithValidCredentials() {
             loginPage
-                    .login(TestData.EMAIL, TestData.PASSWORD)
+                    .login(CommonTestData.EMAIL, CommonTestData.PASSWORD)
                     .shouldBeOpened()
             ;
         }
@@ -49,9 +50,9 @@ public class LoginTests extends TestBase {
 
         static Stream<Arguments> invalidCreds(){
             return Stream.of(
-                    Arguments.of(TestData.INVALID_EMAIL, TestData.INVALID_PASSWORD),
-                    Arguments.of(TestData.EMAIL, TestData.INVALID_PASSWORD),
-                    Arguments.of(TestData.INVALID_EMAIL, TestData.PASSWORD)
+                    Arguments.of(UiTestData.INVALID_EMAIL, UiTestData.INVALID_PASSWORD),
+                    Arguments.of(CommonTestData.EMAIL, UiTestData.INVALID_PASSWORD),
+                    Arguments.of(UiTestData.INVALID_EMAIL, CommonTestData.PASSWORD)
             );
         }
 
@@ -70,7 +71,7 @@ public class LoginTests extends TestBase {
         @DisplayName("Can close error popup")
         void shouldCloseErrorPopup() {
             loginPage
-                    .fillCredential(TestData.INVALID_EMAIL, TestData.INVALID_PASSWORD)
+                    .fillCredential(UiTestData.INVALID_EMAIL, UiTestData.INVALID_PASSWORD)
                     .clickSignIn()
                     .closeErrorPopup();
         }
@@ -84,7 +85,7 @@ public class LoginTests extends TestBase {
         @DisplayName("Empty email should be invalid")
         void shouldShowErrorForEmptyEmail() {
             loginPage
-                .fillCredential("", TestData.PASSWORD)
+                .fillCredential("", CommonTestData.PASSWORD)
                 .clickSignIn();
             Html5Validation.shouldBeInvalid(loginPage.getEmailInput());
     }
@@ -93,7 +94,7 @@ public class LoginTests extends TestBase {
         @DisplayName("Empty password should be invalid")
         void shouldShowErrorForEmptyPassword() {
             loginPage
-                    .fillCredential(TestData.EMAIL, "")
+                    .fillCredential(CommonTestData.EMAIL, "")
                     .clickSignIn();
             Html5Validation.shouldBeInvalid(loginPage.getPasswordInput());
     }
