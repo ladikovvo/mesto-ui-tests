@@ -30,9 +30,9 @@ A pet project with automated tests for the **Mesto** service.
     - `clients/` — API clients (`AuthClient`, `CardsClient`, `UsersClient`)
     - `config/` — API config (`ApiConfig`)
     - `data/` — API test data (optional, `ApiTestData`)
-    - `models/` — POJOs (`Card`, `UserMe`, `UpdateProfileRequest`)
+    - `models/` — POJOs (`Card`, `UserMe`, `UpdateProfileRequest`, `CreateCardRequest`, `ApiResponse`)
     - `specs/` — RestAssured specs (`ApiSpecs`)
-    - `tests/` — API tests (`ApiTestBase`, `MestoApiLesson1Tests`)
+    - `tests/` — API tests (`ApiTestBase`, `ApiTests`, `ApiNegativeTests`)
     - `utils/` — API utilities (optional)
 - `ui/`
     - `pages/` — Page Objects (`LoginPage`, `HomePage`, `RegistrationPage`)

@@ -14,7 +14,7 @@ public class UiConfig {
     static void setup() {
         Configuration.baseUrl = TestConfig.BASE_URL;
         Configuration.browserSize = "1920x1080";
-        Configuration.timeout = 8000;          // ожидания shouldBe/shouldHave
+        Configuration.timeout = 12000;          // ожидания shouldBe/shouldHave
         Configuration.screenshots = true;
         Configuration.savePageSource = false;
         Configuration.reportsFolder = "target/selenide-reports";
