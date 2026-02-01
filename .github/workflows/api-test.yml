@@ -1,4 +1,4 @@
-name: ui-tests
+name: api-tests
 
 on:
 
@@ -6,20 +6,11 @@ on:
   pull_request:
   workflow_dispatch:
 
-
 jobs:
-  ui:
+  api:
     runs-on: ubuntu-latest
-
-    services:
-      selenium:
-        image: selenium/standalone-chrome:4.23.1
-        ports:
-          - 4444:4444
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -28,8 +19,8 @@ jobs:
           java-version: '24'
           cache: maven
 
-      - name: Run tests (remote + headless)
-        run: mvn -q clean test -Dgroups=ui -Dselenide.remote=http://localhost:4444/wd/hub -Dselenide.headless=true
+      - name: Run API tests
+        run: mvn -q clean test -Dgroups=api
 
       - name: Generate Allure report
         if: always()
@@ -39,7 +30,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ui-artifacts
+          name: api-artifacts
           path: |
             target/surefire-reports/
             target/allure-results/

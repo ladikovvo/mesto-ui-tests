@@ -45,4 +45,12 @@ public final class ApiSpecs {
     public static ResponseSpecification status401() {
         return new ResponseSpecBuilder().expectStatusCode(401).build();
     }
+
+    public static ResponseSpecification status400() {
+        return new ResponseSpecBuilder().expectStatusCode(400).build();
+    }
+
+    public static ResponseSpecification status404() {
+        return new ResponseSpecBuilder().expectStatusCode(404).build();
+    }
 }

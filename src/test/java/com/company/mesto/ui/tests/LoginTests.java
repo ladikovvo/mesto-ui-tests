@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 
 @Tag("ui")
 @Tag("auth")
+@DisplayName("Login page tests")
 public class LoginTests extends UiConfig {
 
     LoginPage loginPage;
@@ -34,7 +35,7 @@ public class LoginTests extends UiConfig {
         @Tag("smoke")
         @Test
         @Timeout(20)
-        @DisplayName("UserData can login with valid credentials")
+        @DisplayName("User can login with valid credentials")
         void shouldLoginWithValidCredentials() {
             loginPage
                     .login(CommonTestData.EMAIL, CommonTestData.PASSWORD)

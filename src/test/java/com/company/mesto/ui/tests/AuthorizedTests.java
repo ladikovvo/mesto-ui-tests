@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("ui")
 @Tag("authorized")
+@DisplayName("Home page tests")
 public class AuthorizedTests extends UiConfig {
 
     private HomePage home;
@@ -23,6 +24,7 @@ public class AuthorizedTests extends UiConfig {
                 .shouldBeOpened();
     }
 
+
     @Tag("smoke")
     @Test
     @DisplayName("Logout")
@@ -33,7 +35,7 @@ public class AuthorizedTests extends UiConfig {
     }
 
     @Test
-    @DisplayName("Heder should contain user email: {expectedEmail} ")
+    @DisplayName("Header should contain user email: {expectedEmail} ")
     void headerShouldContainUserEmail(){
         String expectedEmail = CommonTestData.EMAIL;
         String headerEmail = home.getHeaderUserEmail();

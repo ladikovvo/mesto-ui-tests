@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 @Tag("ui")
 @Tag("auth")
+@DisplayName("Registration page tests")
 public class RegistrationTests extends UiConfig {
 
     private RegistrationPage registrationPage;

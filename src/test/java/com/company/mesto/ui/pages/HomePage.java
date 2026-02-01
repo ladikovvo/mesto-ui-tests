@@ -18,7 +18,7 @@ public class HomePage {
     // main Info
     private final SelenideElement headerUser = $(".header__user");
     private final SelenideElement profileName = $("h1.profile__title");
-    private final SelenideElement profileDescription = $("p.profile__description");
+    private final SelenideElement profileActivity = $("p.profile__description");
     private final SelenideElement footerText = $(".footer__copyright");
 
     // main buttons
@@ -110,7 +110,7 @@ public class HomePage {
 
     @Step("Get profile activity")
     public String getProfileActivity(){
-        return profileDescription
+        return profileActivity
                 .shouldBe(visible)
                 .shouldNotBe(empty)
                 .getText()
@@ -157,16 +157,16 @@ public class HomePage {
         return this;
     }
 
-    @Step("Wait profile Name changed")
+    @Step("Wait profile Name changed (old: {old})")
     public HomePage waitProfileNameChanged(String old) {
-        profileName.shouldNotHave(exactText(String.valueOf(old)));
+        profileName.shouldNotHave(exactText(old));
         AllureAttachments.screenshot("After profile Name changed");
         return this;
     }
 
     @Step("Wait profile Activity changed")
     public HomePage waitProfileActivityChanged(String old) {
-        profileDescription.shouldNotHave(exactText(String.valueOf(old)));
+        profileActivity.shouldNotHave(exactText(String.valueOf(old)));
         AllureAttachments.screenshot("After profile Activity changed");
         return this;
     }
