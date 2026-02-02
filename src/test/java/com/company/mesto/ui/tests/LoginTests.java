@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Tag;
 import java.util.stream.Stream;
 
 @Tag("ui")
-@Tag("auth")
 @DisplayName("Login page tests")
 public class LoginTests extends UiConfig {
 
@@ -32,6 +31,7 @@ public class LoginTests extends UiConfig {
     @DisplayName("Valid credentials")
     class Valid {
 
+        @Tag("auth")
         @Tag("smoke")
         @Test
         @Timeout(20)

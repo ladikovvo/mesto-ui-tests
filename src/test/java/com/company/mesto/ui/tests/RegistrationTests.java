@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 @Tag("ui")
-@Tag("auth")
 @DisplayName("Registration page tests")
 public class RegistrationTests extends UiConfig {
 
@@ -24,6 +23,7 @@ public class RegistrationTests extends UiConfig {
                 ;
     }
 
+    @Tag("auth")
     @Test
     @DisplayName("Register new valid user")
     void registerNewValidUser(){

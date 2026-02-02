@@ -1,7 +1,6 @@
 package com.company.mesto.api.config;
 
 import com.company.mesto.config.TestConfig;
-import com.company.mesto.testdata.CommonTestData;
 
 public final class ApiConfig {
     private ApiConfig() {}

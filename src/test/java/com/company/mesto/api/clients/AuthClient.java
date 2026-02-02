@@ -3,7 +3,6 @@ package com.company.mesto.api.clients;
 import com.company.mesto.api.config.ApiConfig;
 import io.restassured.http.ContentType;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import static io.restassured.RestAssured.*;

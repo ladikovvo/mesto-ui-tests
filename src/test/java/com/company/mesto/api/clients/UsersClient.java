@@ -1,7 +1,6 @@
 package com.company.mesto.api.clients;
 
 import com.company.mesto.api.models.ApiResponse;
-import com.company.mesto.api.models.CreateCardRequest;
 import com.company.mesto.api.models.UpdateProfileRequest;
 import com.company.mesto.api.models.UserMe;
 import io.qameta.allure.Step;

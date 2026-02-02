@@ -10,7 +10,7 @@ import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+
 
 
 public class HomePage {
@@ -58,6 +58,12 @@ public class HomePage {
         throw new AssertionError("Post card not found by title: " + title);
     }
 
+    private SelenideElement findFirstPost(){
+        listOfPosts.shouldBe(visible);
+        cards.shouldHave(sizeGreaterThan(0));
+        return cards.first();
+    }
+
 
 
 
@@ -71,8 +77,18 @@ public class HomePage {
     @Step("Logout")
     public LoginPage clickLogout(){
         logoutButton.shouldBe(interactable).click();
+        logoutButton.shouldNotBe(visible);
+        AllureAttachments.screenshot("After click logout");
         return new LoginPage();
     }
+
+    @Step("Get first card")
+    public PostCardComponent firstCard(){
+        SelenideElement card = findFirstPost().shouldBe(visible);
+        AllureAttachments.screenshot("After get first card");
+        return new PostCardComponent(card);
+    }
+
 
     @Step("Get post card by title: {title}")
     public PostCardComponent cardByTitle(String title){
@@ -92,8 +108,6 @@ public class HomePage {
                 .trim();
 
     }
-
-
 
 
     // Pofile settings -----------------------------------------------------
@@ -170,10 +184,6 @@ public class HomePage {
         AllureAttachments.screenshot("After profile Activity changed");
         return this;
     }
-
-
-
-
 
 
 

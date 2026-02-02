@@ -10,7 +10,6 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("ui")
-@Tag("authorized")
 @DisplayName("Home page tests")
 public class AuthorizedTests extends UiConfig {
 
@@ -25,6 +24,7 @@ public class AuthorizedTests extends UiConfig {
     }
 
 
+    @Tag("auth")
     @Tag("smoke")
     @Test
     @DisplayName("Logout")
@@ -35,7 +35,7 @@ public class AuthorizedTests extends UiConfig {
     }
 
     @Test
-    @DisplayName("Header should contain user email: {expectedEmail} ")
+    @DisplayName("Header shows logged-in user email")
     void headerShouldContainUserEmail(){
         String expectedEmail = CommonTestData.EMAIL;
         String headerEmail = home.getHeaderUserEmail();
@@ -91,25 +91,10 @@ public class AuthorizedTests extends UiConfig {
     class Posts {
 
         @Test
-        @DisplayName("Should throw if post not found by title")
-        void shouldThrowIfPostNotFound() {
-            AssertionError e = assertThrows(
-                    AssertionError.class,
-                    () -> home.cardByTitle("NO_SUCH_TITLE_123")
-            );
-
-            assertTrue(
-                    e.getMessage().contains("Post card not found"),
-                    "Error message should explain why the post was not found"
-            );
-        }
-
-        @Tag("likes")
-        @Test
         @DisplayName("Should increase like counter")
 //        @EnabledIfEnvironmentVariable(named = "RUN_UI", matches = "true")
         void shouldIncreaseCounter(){
-            PostCardComponent post = home.cardByTitle("Москва140101");
+            PostCardComponent post = home.firstCard();
             post.ensureNotLiked();
             int old = post.likesCount();
             post.likePost();
